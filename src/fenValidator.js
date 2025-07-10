@@ -37,6 +37,12 @@ class FenValidator {
       }
     }
     
+    // Validate active color (second part - must be 'w' or 'b')
+    const activeColor = parts[1];
+    if (activeColor !== 'w' && activeColor !== 'b') {
+      return { isValid: false };
+    }
+    
     return { isValid: true };
   }
 }

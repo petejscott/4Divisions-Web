@@ -61,4 +61,20 @@ describe('FEN String Validation', () => {
     const resultTooFewFiles = validator.validate('rnbqkbnr/ppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
     expect(resultTooFewFiles.isValid).toBe(false);
   });
+
+  test('FEN with invalid active color returns invalid', () => {
+    const validator = new FenValidator();
+    
+    // Test with invalid active color 'x'
+    const resultInvalidColor = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR x KQkq - 0 1');
+    expect(resultInvalidColor.isValid).toBe(false);
+    
+    // Test with invalid active color 'W' (uppercase not allowed)
+    const resultUppercaseW = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR W KQkq - 0 1');
+    expect(resultUppercaseW.isValid).toBe(false);
+    
+    // Test with invalid active color 'B' (uppercase not allowed)
+    const resultUppercaseB = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR B KQkq - 0 1');
+    expect(resultUppercaseB.isValid).toBe(false);
+  });
 });
