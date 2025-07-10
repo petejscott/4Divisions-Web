@@ -79,6 +79,17 @@ class FenValidator {
         return { isValid: false };
       }
     }
+    
+    // Validate halfmove clock (fifth part - must be non-negative integer)
+    const halfmoveClock = parts[4];
+    if (!/^\d+$/.test(halfmoveClock)) {
+      return { isValid: false };
+    }
+    
+    const halfmoveClockNumber = parseInt(halfmoveClock, 10);
+    if (halfmoveClockNumber < 0) {
+      return { isValid: false };
+    }
 
     return { isValid: true };
   }

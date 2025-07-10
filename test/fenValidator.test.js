@@ -113,4 +113,24 @@ describe('FEN String Validation', () => {
     const resultInvalidChars = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq xx 0 1');
     expect(resultInvalidChars.isValid).toBe(false);
   });
+
+  test('FEN with invalid halfmove clock returns invalid', () => {
+    const validator = new FenValidator();
+    
+    // Test with negative halfmove clock
+    const resultNegative = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - -1 1');
+    expect(resultNegative.isValid).toBe(false);
+    
+    // Test with non-numeric halfmove clock
+    const resultNonNumeric = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - abc 1');
+    expect(resultNonNumeric.isValid).toBe(false);
+    
+    // Test with decimal halfmove clock
+    const resultDecimal = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 1.5 1');
+    expect(resultDecimal.isValid).toBe(false);
+    
+    // Test with empty halfmove clock
+    const resultEmpty = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -  1');
+    expect(resultEmpty.isValid).toBe(false);
+  });
 });
