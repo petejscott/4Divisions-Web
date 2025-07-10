@@ -49,4 +49,16 @@ describe('FEN String Validation', () => {
     const resultTooManyRanks = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
     expect(resultTooManyRanks.isValid).toBe(false);
   });
+
+  test('FEN with wrong number of files per rank returns invalid', () => {
+    const validator = new FenValidator();
+    
+    // Test with rank having too many files (9 instead of 8)
+    const resultTooManyFiles = validator.validate('rnbqkbnrr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
+    expect(resultTooManyFiles.isValid).toBe(false);
+    
+    // Test with rank having too few files (7 instead of 8)
+    const resultTooFewFiles = validator.validate('rnbqkbnr/ppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
+    expect(resultTooFewFiles.isValid).toBe(false);
+  });
 });

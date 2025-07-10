@@ -22,6 +22,21 @@ class FenValidator {
       return { isValid: false };
     }
     
+    // Validate each rank has exactly 8 files
+    for (const rank of ranks) {
+      let fileCount = 0;
+      for (const char of rank) {
+        if (/[12345678]/.test(char)) {
+          fileCount += parseInt(char);
+        } else if (/[rnbqkpRNBQKP]/.test(char)) {
+          fileCount += 1;
+        }
+      }
+      if (fileCount !== 8) {
+        return { isValid: false };
+      }
+    }
+    
     return { isValid: true };
   }
 }
