@@ -58,6 +58,28 @@ class FenValidator {
       }
     }
     
+    // Validate en passant square (fourth part - must be '-' or valid square notation)
+    const enPassantSquare = parts[3];
+    if (enPassantSquare !== '-') {
+      // Must be exactly 2 characters: file (a-h) + rank (1-8)
+      if (enPassantSquare.length !== 2) {
+        return { isValid: false };
+      }
+      
+      const file = enPassantSquare[0];
+      const rank = enPassantSquare[1];
+      
+      // Validate file is a-h
+      if (!/[a-h]/.test(file)) {
+        return { isValid: false };
+      }
+      
+      // Validate rank is 1-8
+      if (!/[1-8]/.test(rank)) {
+        return { isValid: false };
+      }
+    }
+
     return { isValid: true };
   }
 }

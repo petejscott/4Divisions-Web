@@ -93,4 +93,24 @@ describe('FEN String Validation', () => {
     const resultWithNumbers = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w K1q - 0 1');
     expect(resultWithNumbers.isValid).toBe(false);
   });
+
+  test('FEN with invalid en passant square returns invalid', () => {
+    const validator = new FenValidator();
+    
+    // Test with invalid file letter (should be a-h)
+    const resultInvalidFile = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq i3 0 1');
+    expect(resultInvalidFile.isValid).toBe(false);
+    
+    // Test with invalid rank number (should be 1-8)
+    const resultInvalidRank = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq e9 0 1');
+    expect(resultInvalidRank.isValid).toBe(false);
+    
+    // Test with wrong format (should be two characters or -)
+    const resultWrongFormat = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq e33 0 1');
+    expect(resultWrongFormat.isValid).toBe(false);
+    
+    // Test with invalid characters
+    const resultInvalidChars = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq xx 0 1');
+    expect(resultInvalidChars.isValid).toBe(false);
+  });
 });
