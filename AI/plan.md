@@ -9,7 +9,7 @@ After each individual test passes, commit the changes to source control. After e
 
 - [x] 1. Test empty FEN string returns invalid
 - [x] 2. Test FEN with wrong number of parts (not 6) returns invalid
-- [ ] 3. Test valid starting position FEN returns valid
+- [x] 3. Test valid starting position FEN returns valid
 - [ ] 4. Test FEN with invalid characters in board section returns invalid
 - [ ] 5. Test FEN with wrong number of ranks (not 8) returns invalid
 - [ ] 6. Test FEN with wrong number of files per rank returns invalid
