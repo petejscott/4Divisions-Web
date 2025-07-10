@@ -4,6 +4,11 @@ class FenValidator {
       return { isValid: false };
     }
     
+    const parts = fenString.split(' ');
+    if (parts.length !== 6) {
+      return { isValid: false };
+    }
+    
     return { isValid: true };
   }
 }
