@@ -18,4 +18,11 @@ describe('FEN String Validation', () => {
     const resultTooMany = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1 extra');
     expect(resultTooMany.isValid).toBe(false);
   });
+
+  test('valid starting position FEN returns valid', () => {
+    const validator = new FenValidator();
+    const startingPositionFen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+    const result = validator.validate(startingPositionFen);
+    expect(result.isValid).toBe(true);
+  });
 });
