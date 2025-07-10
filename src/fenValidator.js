@@ -9,6 +9,13 @@ class FenValidator {
       return { isValid: false };
     }
     
+    // Validate board section (first part)
+    const boardSection = parts[0];
+    const validBoardChars = /^[rnbqkpRNBQKP12345678\/]+$/;
+    if (!validBoardChars.test(boardSection)) {
+      return { isValid: false };
+    }
+    
     return { isValid: true };
   }
 }

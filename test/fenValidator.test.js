@@ -25,4 +25,16 @@ describe('FEN String Validation', () => {
     const result = validator.validate(startingPositionFen);
     expect(result.isValid).toBe(true);
   });
+
+  test('FEN with invalid characters in board section returns invalid', () => {
+    const validator = new FenValidator();
+    
+    // Test with invalid character 'x' in board section
+    const resultInvalidChar = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPxPPPP/RNBQKBNR w KQkq - 0 1');
+    expect(resultInvalidChar.isValid).toBe(false);
+    
+    // Test with invalid character '9' in board section (only 1-8 allowed for empty squares)
+    const resultInvalidNumber = validator.validate('rnbqkbnr/pppppppp/9/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
+    expect(resultInvalidNumber.isValid).toBe(false);
+  });
 });
