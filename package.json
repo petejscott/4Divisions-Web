@@ -1,0 +1,19 @@
+{
+  "name": "4divisions",
+  "version": "1.0.0",
+  "description": "Web-based chess application with bitboard representation",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
+  }
+}
