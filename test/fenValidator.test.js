@@ -37,4 +37,16 @@ describe('FEN String Validation', () => {
     const resultInvalidNumber = validator.validate('rnbqkbnr/pppppppp/9/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
     expect(resultInvalidNumber.isValid).toBe(false);
   });
+
+  test('FEN with wrong number of ranks (not 8) returns invalid', () => {
+    const validator = new FenValidator();
+    
+    // Test with too few ranks (only 7)
+    const resultTooFewRanks = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP w KQkq - 0 1');
+    expect(resultTooFewRanks.isValid).toBe(false);
+    
+    // Test with too many ranks (9)
+    const resultTooManyRanks = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
+    expect(resultTooManyRanks.isValid).toBe(false);
+  });
 });

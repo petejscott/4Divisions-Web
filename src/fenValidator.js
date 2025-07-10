@@ -16,6 +16,12 @@ class FenValidator {
       return { isValid: false };
     }
     
+    // Validate number of ranks (should be 8)
+    const ranks = boardSection.split('/');
+    if (ranks.length !== 8) {
+      return { isValid: false };
+    }
+    
     return { isValid: true };
   }
 }
