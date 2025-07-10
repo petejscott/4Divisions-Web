@@ -43,6 +43,21 @@ class FenValidator {
       return { isValid: false };
     }
     
+    // Validate castling rights (third part - must be '-' or combination of K, Q, k, q)
+    const castlingRights = parts[2];
+    const validCastling = /^(-|[KQkq]+)$/;
+    if (!validCastling.test(castlingRights)) {
+      return { isValid: false };
+    }
+    
+    // If not '-', validate that castling contains only valid characters
+    if (castlingRights !== '-') {
+      const validCastlingChars = /^[KQkq]+$/;
+      if (!validCastlingChars.test(castlingRights)) {
+        return { isValid: false };
+      }
+    }
+    
     return { isValid: true };
   }
 }

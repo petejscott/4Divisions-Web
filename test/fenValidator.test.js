@@ -77,4 +77,20 @@ describe('FEN String Validation', () => {
     const resultUppercaseB = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR B KQkq - 0 1');
     expect(resultUppercaseB.isValid).toBe(false);
   });
+
+  test('FEN with invalid castling rights returns invalid', () => {
+    const validator = new FenValidator();
+    
+    // Test with invalid character in castling rights
+    const resultInvalidChar = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkx - 0 1');
+    expect(resultInvalidChar.isValid).toBe(false);
+    
+    // Test with invalid characters (not K, Q, k, q, or -)
+    const resultInvalidChars = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQab - 0 1');
+    expect(resultInvalidChars.isValid).toBe(false);
+    
+    // Test with numbers in castling rights
+    const resultWithNumbers = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w K1q - 0 1');
+    expect(resultWithNumbers.isValid).toBe(false);
+  });
 });
