@@ -133,4 +133,28 @@ describe('FEN String Validation', () => {
     const resultEmpty = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -  1');
     expect(resultEmpty.isValid).toBe(false);
   });
+
+  test('FEN with invalid fullmove number returns invalid', () => {
+    const validator = new FenValidator();
+    
+    // Test with negative fullmove number
+    const resultNegative = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 -1');
+    expect(resultNegative.isValid).toBe(false);
+    
+    // Test with zero fullmove number (should be at least 1)
+    const resultZero = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 0');
+    expect(resultZero.isValid).toBe(false);
+    
+    // Test with non-numeric fullmove number
+    const resultNonNumeric = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 abc');
+    expect(resultNonNumeric.isValid).toBe(false);
+    
+    // Test with decimal fullmove number
+    const resultDecimal = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1.5');
+    expect(resultDecimal.isValid).toBe(false);
+    
+    // Test with empty fullmove number
+    const resultEmpty = validator.validate('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 ');
+    expect(resultEmpty.isValid).toBe(false);
+  });
 });

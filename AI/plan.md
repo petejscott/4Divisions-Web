@@ -15,8 +15,8 @@ After each individual test passes, commit the changes to source control. After e
 - [x] 6. Test FEN with wrong number of files per rank returns invalid
 - [x] 7. Test FEN with invalid active color returns invalid
 - [x] 8. Test FEN with invalid castling rights returns invalid
-- [ ] 9. Test FEN with invalid en passant square returns invalid
-- [ ] 10. Test FEN with invalid halfmove clock returns invalid
+- [x] 9. Test FEN with invalid en passant square returns invalid
+- [x] 10. Test FEN with invalid halfmove clock returns invalid
 - [ ] 11. Test FEN with invalid fullmove number returns invalid
 
 ## 2. Bitboard Representation

@@ -91,6 +91,17 @@ class FenValidator {
       return { isValid: false };
     }
 
+    // Validate fullmove number (sixth part - must be positive integer)
+    const fullmoveNumber = parts[5];
+    if (!/^\d+$/.test(fullmoveNumber)) {
+      return { isValid: false };
+    }
+    
+    const fullmoveNumberValue = parseInt(fullmoveNumber, 10);
+    if (fullmoveNumberValue < 1) {
+      return { isValid: false };
+    }
+
     return { isValid: true };
   }
 }
